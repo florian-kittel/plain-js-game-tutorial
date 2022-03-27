@@ -2,6 +2,8 @@ console.log('Hello Game');
 const canvas = document.querySelector('canvas');
 const context = canvas.getContext('2d');
 
+canvas.onselectstart = () => false;
+
 canvas.width = 1024;
 canvas.height = 576;
 
