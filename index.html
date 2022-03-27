@@ -1,53 +1,78 @@
-<style>
-  body {
-    background-color: #333;
-  }
+<!DOCTYPE html>
+<html lang="en">
 
-  .controlls {
-    position: absolute;
-    left: 20px;
-    bottom: 20px;
-  }
+<head>
+  <meta charset="UTF-8">
+  <title>Plain JS Game</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-  .controlls>div {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+  <style>
+    * {
+      touch-action: manipulation;
+    }
 
-  button {
-    width: 80px;
-    height: 48px;
-    margin: 2px;
-    user-select: none;
-    border: 1px solid #666;
-    border-radius: 8px;
-    color: #666;
-    background-color: #FCFCFC;
-  }
+    body {
+      background-color: #333;
+    }
 
-  button:active {
-    color: #FCFCFC;
-    background-color: #666;
-  }
-</style>
+    .controlls {
+      position: absolute;
+      left: 20px;
+      bottom: 20px;
+    }
 
-<div style="position: relative;">
-  <div class="controlls">
-    <div>
-      <button id="buttonUp">Up</button>
+    .controlls>div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    button {
+      width: 80px;
+      height: 48px;
+      margin: 2px;
+      border: 1px solid #666;
+      border-radius: 8px;
+      color: #666;
+      background-color: #FCFCFC;
+
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -khtml-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+
+      touch-action: manipulation;
+    }
+
+    button:active {
+      color: #FCFCFC;
+      background-color: #666;
+    }
+  </style>
+</head>
+
+<body>
+  <div style="position: relative;">
+    <div class="controlls">
+      <div>
+        <button id="buttonUp">Up</button>
+      </div>
+      <div>
+        <button id="buttonLeft">Left</button>
+        <button id="buttonRight">Right</button>
+      </div>
+      <div>
+        <button id="buttonDown">Down</button>
+      </div>
     </div>
-    <div>
-      <button id="buttonLeft">Left</button>
-      <button id="buttonRight">Right</button>
-    </div>
-    <div>
-      <button id="buttonDown">Down</button>
-    </div>
+    <canvas></canvas>
   </div>
-  <canvas></canvas>
-</div>
 
-<script src="./data/collisions.js"></script>
-<script src="./classes.js"></script>
-<script src="./index.js"></script>
+  <script src="./data/collisions.js"></script>
+  <script src="./classes.js"></script>
+  <script src="./index.js"></script>
+</body>
+
+</html>
