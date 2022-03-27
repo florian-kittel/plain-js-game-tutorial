@@ -108,8 +108,6 @@ const testBoundary = new Boundary({
 const movables = [background, foreground, ...boundaries];
 
 function rectangularCollision({ rectangle1, rectangle2 }) {
-  // console.log(rectangle1.position.x, rectangle1.width);
-  // console.log(rectangle1.position.x + rectangle1.width, rectangle2.position.x);
   return (
     rectangle1.position.x + rectangle1.width > rectangle2.position.x &&
     rectangle1.position.x < rectangle2.position.x + rectangle2.width && // geht
@@ -121,20 +119,8 @@ function rectangularCollision({ rectangle1, rectangle2 }) {
 const animate = () => {
   window.requestAnimationFrame(animate);
   background.draw();
-  // testBoundary.draw();
-
-  // boundaries.forEach(bondary => {
-  //   bondary.draw();
-  // });
-
   player.draw();
   foreground.draw();
-
-
-  // console.log(player.position.x + player.width, testBoundary.position.x);
-  // if (rectangularCollision({ rectangle1: player, rectangle2: testBoundary })) {
-  //   console.log('colliding');
-  // }
 
   const getPlayer = () => {
     return {
@@ -150,6 +136,7 @@ const animate = () => {
 
   const movingDistance = 4;
   player.moving = false;
+
   // Oben
   if (keys.w.pressed && lastKey === 'w') {
     let moving = true;
@@ -261,8 +248,8 @@ const animate = () => {
 
 animate();
 
-window.addEventListener('keydown', (event) => {
-  switch (event.key) {
+const keyDownEvent = (key) => {
+  switch (key) {
     case 'w':
     case 'ArrowUp':
       keys.w.pressed = true;
@@ -287,10 +274,10 @@ window.addEventListener('keydown', (event) => {
       lastKey = 'd';
       break;
   }
-});
+}
 
-window.addEventListener('keyup', (event) => {
-  switch (event.key) {
+const keyUpEvent = (key) => {
+  switch (key) {
     case 'w':
     case 'ArrowUp':
       keys.w.pressed = false;
@@ -311,6 +298,20 @@ window.addEventListener('keyup', (event) => {
       keys.d.pressed = false;
       break;
   }
-});
+}
 
-// console.log(context);
+window.addEventListener('keydown', (event) => keyDownEvent(event.key));
+window.addEventListener('keyup', (event) => keyUpEvent(event.key));
+
+const activateMobileButton = (id, eventKey) => {
+  const element = document.getElementById(id);
+  element.ontouchstart = () => keyDownEvent(eventKey);
+  element.onmousedown = () => keyDownEvent(eventKey);
+  element.ontouchend = () => keyUpEvent(eventKey);
+  element.onmouseup = () => keyUpEvent(eventKey);
+}
+
+activateMobileButton('buttonUp', 'w');
+activateMobileButton('buttonLeft', 'a');
+activateMobileButton('buttonDown', 's');
+activateMobileButton('buttonRight', 'd');

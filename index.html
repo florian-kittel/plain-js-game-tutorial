@@ -1,11 +1,53 @@
 <style>
-    body {
-        background-color: #333;
-    }
+  body {
+    background-color: #333;
+  }
+
+  .controlls {
+    position: absolute;
+    left: 20px;
+    bottom: 20px;
+  }
+
+  .controlls>div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  button {
+    width: 80px;
+    height: 48px;
+    margin: 2px;
+    user-select: none;
+    border: 1px solid #666;
+    border-radius: 8px;
+    color: #666;
+    background-color: #FCFCFC;
+  }
+
+  button:active {
+    color: #FCFCFC;
+    background-color: #666;
+  }
 </style>
 
+<div style="position: relative;">
+  <div class="controlls">
+    <div>
+      <button id="buttonUp">Up</button>
+    </div>
+    <div>
+      <button id="buttonLeft">Left</button>
+      <button id="buttonRight">Right</button>
+    </div>
+    <div>
+      <button id="buttonDown">Down</button>
+    </div>
+  </div>
+  <canvas></canvas>
+</div>
 
-<canvas></canvas>
 <script src="./data/collisions.js"></script>
 <script src="./classes.js"></script>
 <script src="./index.js"></script>
